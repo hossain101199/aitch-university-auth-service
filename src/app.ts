@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello from Aitch university auth')
+  res.send('hey from Aitch university auth')
 })
 
 export default app
