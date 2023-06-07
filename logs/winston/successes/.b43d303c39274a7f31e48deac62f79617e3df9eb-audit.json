@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\.b43d303c39274a7f31e48deac62f79617e3df9eb-audit.json",
+    "files": [
+        {
+            "date": 1686163212571,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\00-08-06-2023-success.log",
+            "hash": "dc439cea3a911a5612e4212388f9c1268750d73dafeff5cbf813624714bf566b"
+        },
+        {
+            "date": 1686168367895,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\02-08-06-2023-success.log",
+            "hash": "a75c4f45b9825cdaa77f32e1ee7dbb896cc6d8d5dc719034d0bc3db3d224e476"
+        }
+    ],
+    "hashType": "sha256"
+}
