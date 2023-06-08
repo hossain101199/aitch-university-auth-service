@@ -6,14 +6,14 @@
     "auditLog": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\error\\.2dd960c5b02b86037dca6f5857a3ab57d188f0b9-audit.json",
     "files": [
         {
-            "date": 1686163212576,
-            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\error\\00-08-06-2023-error.log",
-            "hash": "745cd6938584e5329cef177d8b1734543be400e2af0b26fadec3858189c2dc39"
+            "date": 1686220789871,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\error\\16-08-06-2023-error.log",
+            "hash": "ccf4dacc420fe853c038da8925dce63832a92e276e6d7984aacc3b72079313f2"
         },
         {
-            "date": 1686168367901,
-            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\error\\02-08-06-2023-error.log",
-            "hash": "231cf445dd72a8c30b12314e7d698f82c5a9c4c5eafbb6381af7d86cf254e6b6"
+            "date": 1686227485349,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\error\\18-08-06-2023-error.log",
+            "hash": "b886f3698ff560a2804c6750e9116c2af323b5a2db17e4f20a420e4d2605b248"
         }
     ],
     "hashType": "sha256"

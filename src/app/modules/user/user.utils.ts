@@ -1,5 +1,5 @@
-import { errorLogger } from '../../../shared/logger'
-import { User } from './user.model'
+import { errorLogger } from '../../../shared/logger';
+import { User } from './user.model';
 
 export const findLastUserId = async () => {
   try {
@@ -7,16 +7,16 @@ export const findLastUserId = async () => {
       .sort({
         createdAt: -1,
       })
-      .lean()
+      .lean();
 
-    return lastUser?.id
+    return lastUser?.id;
   } catch (error) {
-    errorLogger.error('Error finding last user:', error)
+    errorLogger.error('Error finding last user:', error);
   }
-}
+};
 
 export const generateUserId = async () => {
-  const currentId = (await findLastUserId()) || (0).toString().padStart(5, '0')
-  const incrementedId = (parseInt(currentId) + 1).toString().padStart(5, '0')
-  return incrementedId
-}
+  const currentId = (await findLastUserId()) || (0).toString().padStart(5, '0');
+  const incrementedId = (parseInt(currentId) + 1).toString().padStart(5, '0');
+  return incrementedId;
+};
