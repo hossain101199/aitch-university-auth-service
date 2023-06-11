@@ -79,6 +79,16 @@
             "date": 1686492001982,
             "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\20-11-06-2023-success.log",
             "hash": "45f2a21b84dd95a85f24b77deebc5288a707d22b90667988cc5160d1c56118d7"
+        },
+        {
+            "date": 1686496235218,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\21-11-06-2023-success.log",
+            "hash": "f4a77fe0c43241a6d5ce987ae23c7a263833368dc1548fc7cc35074ce299860c"
+        },
+        {
+            "date": 1686499319783,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\22-11-06-2023-success.log",
+            "hash": "a38265034ec4d9c253c1d9a896c9c3f6f5f5dd1faf2e40846e32a66c20b1fe1e"
         }
     ],
     "hashType": "sha256"

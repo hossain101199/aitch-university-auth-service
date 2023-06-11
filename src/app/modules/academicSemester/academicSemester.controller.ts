@@ -22,6 +22,67 @@ const createSemester: RequestHandler = catchAsync(async (req, res) => {
   });
 });
 
+const getSingleSemester: RequestHandler = catchAsync(async (req, res) => {
+  const id = req.params.id;
+
+  const result = await academicSemesterService.getSingleSemesterFromDB(id);
+
+  if (result === null) {
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 404,
+      success: false,
+      message: `Error: Academic semester with ID ${id} is not found. Please verify the provided ID and try again`,
+      data: result,
+    });
+  } else {
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 200,
+      success: true,
+      message: 'Semesters retrieved successfully',
+      data: result,
+    });
+  }
+});
+
+const updateSemester: RequestHandler = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const updateAcademicSemesterData = req.body;
+
+  const result = await academicSemesterService.updateSemesterInDB(
+    id,
+    updateAcademicSemesterData
+  );
+
+  sendResponse<IAcademicSemester>(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Academic semester updated successfully',
+    data: result,
+  });
+});
+
+const deleteSemester: RequestHandler = catchAsync(async (req, res) => {
+  const id = req.params.id;
+
+  const result = await academicSemesterService.deleteSemesterFromDB(id);
+
+  if (result === null) {
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 404,
+      success: false,
+      message: `Error: Academic semester with ID ${id} is not found. Please verify the provided ID and try again`,
+      data: result,
+    });
+  } else {
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 200,
+      success: true,
+      message: 'Academic semester deleted successfully',
+      data: result,
+    });
+  }
+});
+
 const getAllSemesters: RequestHandler = catchAsync(async (req, res) => {
   const filters = pick(req.query, academicSemesterFilterableFields);
 
@@ -41,21 +102,10 @@ const getAllSemesters: RequestHandler = catchAsync(async (req, res) => {
   });
 });
 
-const getSingleSemester: RequestHandler = catchAsync(async (req, res) => {
-  const id = req.params.id;
-
-  const result = await academicSemesterService.getSingleSemesterFromDB(id);
-
-  sendResponse(res, {
-    statusCode: 200,
-    success: true,
-    message: 'Semesters retrieved successfully',
-    data: result,
-  });
-});
-
 export const academicSemesterController = {
   createSemester,
-  getAllSemesters,
   getSingleSemester,
+  updateSemester,
+  deleteSemester,
+  getAllSemesters,
 };
