@@ -92,7 +92,15 @@ const getAllSemestersFromDB = async (
   };
 };
 
+const getSingleSemesterFromDB = async (
+  payload: string
+): Promise<IAcademicSemester | null> => {
+  const result = await AcademicSemester.findById(payload);
+  return result;
+};
+
 export const academicSemesterService = {
   createSemesterInDB,
   getAllSemestersFromDB,
+  getSingleSemesterFromDB,
 };
