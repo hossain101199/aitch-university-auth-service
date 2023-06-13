@@ -96,21 +96,22 @@ const deleteAcademicFaculty: RequestHandler = catchAsync(async (req, res) => {
   }
 });
 
-const getAllFaculties: RequestHandler = catchAsync(async (req, res) => {
+const getAllAcademicFaculties: RequestHandler = catchAsync(async (req, res) => {
   const filters = pick(req.query, academicFacultyFilterableFields);
 
   const paginationOptions = pick(req.query, paginationFields);
 
-  const result = await academicFacultyService.getAllFacultiesFromDB(
+  const result = await academicFacultyService.getAllAcademicFacultiesFromDB(
     filters,
     paginationOptions
   );
 
-  sendResponse<IAcademicFaculty>(res, {
+  sendResponse<IAcademicFaculty[]>(res, {
     statusCode: 200,
     success: true,
     message: 'Academic faculty retrieved successfully',
-    data: result,
+    meta: result.meta,
+    data: result.data,
   });
 });
 
@@ -119,5 +120,5 @@ export const academicFacultyController = {
   getSingleAcademicFaculty,
   updateAcademicFaculty,
   deleteAcademicFaculty,
-  getAllFaculties,
+  getAllAcademicFaculties,
 };

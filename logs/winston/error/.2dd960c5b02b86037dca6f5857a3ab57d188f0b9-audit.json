@@ -109,6 +109,21 @@
             "date": 1686672017336,
             "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\error\\22-13-06-2023-error.log",
             "hash": "307d1db415d1d6130931410f86f351285a21899af4a35501cfbe835cc77e779d"
+        },
+        {
+            "date": 1686675725059,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\error\\23-13-06-2023-error.log",
+            "hash": "2e0a99494a6ce72f5b77f857b2a0ed0277276125e9788670d6126699407c54b3"
+        },
+        {
+            "date": 1686683054526,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\error\\01-14-06-2023-error.log",
+            "hash": "6ba9ab889ab96ebb44ea887679aea545582c6368e2a490289fc2a6e0039406c1"
+        },
+        {
+            "date": 1686686435258,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\error\\02-14-06-2023-error.log",
+            "hash": "5ce52fa90426c386a729a0674eb417e6449fd9d1fd0db01157afede744a55f3a"
         }
     ],
     "hashType": "sha256"

@@ -40,7 +40,7 @@ const deleteAcademicFacultyFromDB = async (
   return result;
 };
 
-const getAllFacultiesFromDB = async (
+const getAllAcademicFacultiesFromDB = async (
   filters: IAcademicFacultyFilters,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IAcademicFaculty[]>> => {
@@ -100,5 +100,5 @@ export const academicFacultyService = {
   getSingleAcademicFacultyFromDB,
   updateAcademicFacultyInDB,
   deleteAcademicFacultyFromDB,
-  getAllFacultiesFromDB,
+  getAllAcademicFacultiesFromDB,
 };
