@@ -11,7 +11,7 @@ import {
   IAcademicSemester,
   IAcademicSemesterFilters,
 } from './academicSemester.interface';
-import { AcademicSemester } from './academicSemester.model';
+import { academicSemester } from './academicSemester.model';
 
 const createSemesterInDB = async (
   payload: IAcademicSemester
@@ -19,7 +19,7 @@ const createSemesterInDB = async (
   const { year, title } = payload;
 
   // Check if the semester already exists in the database
-  const existingSemester = await AcademicSemester.findOne({ year, title });
+  const existingSemester = await academicSemester.findOne({ year, title });
 
   if (existingSemester) {
     throw new ApiError(
@@ -33,21 +33,14 @@ const createSemesterInDB = async (
     throw new ApiError(400, 'Invalid Semester Code');
   }
 
-  const result = await AcademicSemester.create(payload);
+  const result = await academicSemester.create(payload);
   return result;
 };
 
 const getSingleSemesterFromDB = async (
   payload: string
 ): Promise<IAcademicSemester | null> => {
-  const result = await AcademicSemester.findById(payload);
-  return result;
-};
-
-const deleteSemesterFromDB = async (
-  id: string
-): Promise<IAcademicSemester | null> => {
-  const result = await AcademicSemester.findByIdAndDelete(id);
+  const result = await academicSemester.findById(payload);
   return result;
 };
 
@@ -64,9 +57,16 @@ const updateSemesterInDB = async (
     throw new ApiError(400, 'Invalid Semester Code');
   }
 
-  const result = await AcademicSemester.findByIdAndUpdate(id, payload, {
+  const result = await academicSemester.findByIdAndUpdate(id, payload, {
     new: true,
   });
+  return result;
+};
+
+const deleteSemesterFromDB = async (
+  id: string
+): Promise<IAcademicSemester | null> => {
+  const result = await academicSemester.findByIdAndDelete(id);
   return result;
 };
 
@@ -108,12 +108,13 @@ const getAllSemestersFromDB = async (
     sortConditions[sortBy] = sortOrder;
   }
 
-  const result = await AcademicSemester.find(whereConditions)
+  const result = await academicSemester
+    .find(whereConditions)
     .sort(sortConditions)
     .skip(skip)
     .limit(limit);
 
-  const total = await AcademicSemester.countDocuments();
+  const total = await academicSemester.countDocuments();
 
   return {
     meta: {

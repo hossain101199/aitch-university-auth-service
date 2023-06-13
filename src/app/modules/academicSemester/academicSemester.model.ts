@@ -35,10 +35,13 @@ const academicSemesterSchema = new Schema<IAcademicSemester>(
   },
   {
     timestamps: true,
+    toJSON: {
+      virtuals: true,
+    },
   }
 );
 
-export const AcademicSemester = model<IAcademicSemester>(
-  'AcademicSemester',
+export const academicSemester = model<IAcademicSemester>(
+  'academicSemester',
   academicSemesterSchema
 );

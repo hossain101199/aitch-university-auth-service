@@ -38,7 +38,7 @@ const getSingleSemester: RequestHandler = catchAsync(async (req, res) => {
     sendResponse<IAcademicSemester>(res, {
       statusCode: 200,
       success: true,
-      message: 'Semesters retrieved successfully',
+      message: 'Academic semesters retrieved successfully',
       data: result,
     });
   }
@@ -52,13 +52,21 @@ const updateSemester: RequestHandler = catchAsync(async (req, res) => {
     id,
     updateAcademicSemesterData
   );
-
-  sendResponse<IAcademicSemester>(res, {
-    statusCode: 200,
-    success: true,
-    message: 'Academic semester updated successfully',
-    data: result,
-  });
+  if (result === null) {
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 404,
+      success: false,
+      message: `Error: Academic semester with ID ${id} is not found. Please verify the provided ID and try again`,
+      data: result,
+    });
+  } else {
+    sendResponse<IAcademicSemester>(res, {
+      statusCode: 200,
+      success: true,
+      message: 'Academic semester updated successfully',
+      data: result,
+    });
+  }
 });
 
 const deleteSemester: RequestHandler = catchAsync(async (req, res) => {

@@ -89,6 +89,26 @@
             "date": 1686499319783,
             "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\22-11-06-2023-success.log",
             "hash": "a38265034ec4d9c253c1d9a896c9c3f6f5f5dd1faf2e40846e32a66c20b1fe1e"
+        },
+        {
+            "date": 1686664360814,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\19-13-06-2023-success.log",
+            "hash": "381a8c4eb8cfec4fc6d4fc669338670d70d74ffda4acd2788639b271faad7333"
+        },
+        {
+            "date": 1686664965862,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\20-13-06-2023-success.log",
+            "hash": "51ac480c8d698b40b5480ee5bd78906ae974343f8315a120978f8b0453c18b4f"
+        },
+        {
+            "date": 1686668644179,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\21-13-06-2023-success.log",
+            "hash": "54d1c2711da8b4bc73aa028dc31a30d70c5f47643fa37580fe1dde6310476582"
+        },
+        {
+            "date": 1686672017322,
+            "name": "D:\\Level 2\\M3\\Aitch-university-auth-service\\logs\\winston\\successes\\22-13-06-2023-success.log",
+            "hash": "9f1ed67a1eb6eabe6e4ff6b4dff387e52f3d327f34a510ddb71340b6d5a39d83"
         }
     ],
     "hashType": "sha256"
