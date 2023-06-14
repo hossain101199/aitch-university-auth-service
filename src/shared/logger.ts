@@ -1,6 +1,6 @@
-import path from 'path';
+// import path from 'path';
 import { createLogger, format, transports } from 'winston';
-import DailyRotateFile from 'winston-daily-rotate-file';
+// import DailyRotateFile from 'winston-daily-rotate-file';
 
 // Custom Log Format
 const myFormat = format.printf(({ level, message, timestamp }) => {
@@ -17,20 +17,20 @@ const infoLogger = createLogger({
 
   transports: [
     new transports.Console(),
-    new DailyRotateFile({
-      filename: path.join(
-        // eslint-disable-next-line no-undef
-        process.cwd(),
-        'logs',
-        'winston',
-        'successes',
-        '%DATE%-success.log'
-      ),
-      datePattern: 'HH-DD-MM-YYYY',
-      zippedArchive: true,
-      maxSize: '20m',
-      maxFiles: '14d',
-    }),
+    // new DailyRotateFile({
+    //   filename: path.join(
+    //     // eslint-disable-next-line no-undef
+    //     process.cwd(),
+    //     'logs',
+    //     'winston',
+    //     'successes',
+    //     '%DATE%-success.log'
+    //   ),
+    //   datePattern: 'HH-DD-MM-YYYY',
+    //   zippedArchive: true,
+    //   maxSize: '20m',
+    //   maxFiles: '14d',
+    // }),
   ],
 });
 
@@ -40,21 +40,21 @@ const errorLogger = createLogger({
 
   transports: [
     new transports.Console(),
-    new DailyRotateFile({
-      filename: path.join(
-        // eslint-disable-next-line no-undef
-        process.cwd(),
-        'logs',
-        'winston',
-        'error',
-        '%DATE%-error.log'
-      ),
-      datePattern: 'HH-DD-MM-YYYY',
-      zippedArchive: true,
-      maxSize: '20m',
-      maxFiles: '14d',
-    }),
+    // new DailyRotateFile({
+    //   filename: path.join(
+    //     // eslint-disable-next-line no-undef
+    //     process.cwd(),
+    //     'logs',
+    //     'winston',
+    //     'error',
+    //     '%DATE%-error.log'
+    //   ),
+    //   datePattern: 'HH-DD-MM-YYYY',
+    //   zippedArchive: true,
+    //   maxSize: '20m',
+    //   maxFiles: '14d',
+    // }),
   ],
 });
 
-export { infoLogger, errorLogger };
+export { errorLogger, infoLogger };
