@@ -52,3 +52,28 @@ export const generateFacultyId = async (): Promise<string> => {
   // Return the generated faculty ID
   return incrementedId;
 };
+
+// Function to find the ID of the last admin in the database
+export const findLastAdminId = async (): Promise<string | undefined> => {
+  const lastAdmin = await User.findOne({ role: 'admin' }, { id: 1, _id: 0 }) // Find the last admin with the role 'admin'
+    .sort({ createdAt: -1 }) // Sort the results based on the 'createdAt' field in descending order
+    .lean(); // Convert the result to a plain JavaScript object
+
+  // Return the ID of the last admin (if exists), or undefined if no admin found
+  return lastAdmin?.id ? lastAdmin.id.substring(2) : undefined;
+};
+
+// Function to generate a new admin ID.
+export const generateAdminId = async (): Promise<string> => {
+  // Get the current ID by finding the last admin ID or using '00000' if no previous admin exists
+  const currentId =
+    (await findLastAdminId()) || (0).toString().padStart(5, '0');
+
+  // Generate the incremented ID by combining F- and the current ID
+  const incrementedId = `A-${(parseInt(currentId) + 1)
+    .toString()
+    .padStart(5, '0')}`;
+
+  // Return the generated admin ID
+  return incrementedId;
+};

@@ -1,7 +1,6 @@
 import { RequestHandler } from 'express';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
-import { IFaculty } from '../faculty/faculty.interface';
 import { IUser } from './user.interface';
 import { userService } from './user.service';
 
@@ -21,7 +20,7 @@ const createFaculty: RequestHandler = catchAsync(async (req, res) => {
   const { faculty, ...userData } = req.body;
   const result = await userService.createFacultyInDB(faculty, userData);
 
-  sendResponse<IFaculty>(res, {
+  sendResponse<IUser>(res, {
     statusCode: 200,
     success: true,
     message: 'Faculty created successfully',
@@ -29,7 +28,20 @@ const createFaculty: RequestHandler = catchAsync(async (req, res) => {
   });
 });
 
+const createAdmin: RequestHandler = catchAsync(async (req, res) => {
+  const { admin, ...userData } = req.body;
+  const result = await userService.createAdminInDB(admin, userData);
+
+  sendResponse<IUser>(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Admin created successfully',
+    data: result,
+  });
+});
+
 export const userController = {
   createStudent,
   createFaculty,
+  createAdmin,
 };
