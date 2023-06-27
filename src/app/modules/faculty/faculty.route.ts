@@ -1,13 +1,20 @@
 import express from 'express';
+import validateRequest from '../../middlewares/validateRequest';
+import { facultyController } from './faculty.controller';
+import { facultyValidation } from './faculty.validation';
 
 const router = express.Router();
 
-router.get('/:id');
+router.get('/:id', facultyController.getSingleFaculty);
 
-router.patch('/:id');
+router.patch(
+  '/:id',
+  validateRequest(facultyValidation.updateFacultyZodSchema),
+  facultyController.updateFaculty
+);
 
-router.delete('/:id');
+router.delete('/:id', facultyController.deleteFaculty);
 
-router.get('/');
+router.get('/', facultyController.getAllFaculties);
 
-export const studentRoutes = router;
+export const facultyRoutes = router;
