@@ -1,12 +1,7 @@
 import { Model, Types } from 'mongoose';
 import { IAcademicDepartment } from '../academicDepartment/academicDepartment.interface';
 import { IAcademicSemester } from '../academicSemester/academicSemester.interface';
-
-export type IUserName = {
-  firstName: string;
-  lastName: string;
-  middleName: string;
-};
+import { IUserName } from '../user/user.interface';
 
 export type IGuardian = {
   fatherName: string;

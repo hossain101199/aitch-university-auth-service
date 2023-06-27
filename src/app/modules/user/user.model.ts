@@ -10,6 +10,10 @@ const userSchema = new Schema<IUser>(
       type: Schema.Types.ObjectId,
       ref: 'student',
     },
+    faculty: {
+      type: Schema.Types.ObjectId,
+      ref: 'faculty',
+    },
   },
   {
     timestamps: true,
@@ -22,4 +26,4 @@ const userSchema = new Schema<IUser>(
   }
 );
 
-export const User = model<IUser, userModel>('User', userSchema);
+export const User = model<IUser, userModel>('user', userSchema);

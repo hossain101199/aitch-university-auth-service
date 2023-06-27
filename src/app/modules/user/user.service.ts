@@ -4,11 +4,13 @@ import { ENUM_USER_ROLE } from '../../../enums/user';
 import ApiError from '../../../errors/ApiError';
 import { IAcademicSemester } from '../academicSemester/academicSemester.interface';
 import { academicSemester } from '../academicSemester/academicSemester.model';
+import { IFaculty } from '../faculty/faculty.interface';
+import { Faculty } from '../faculty/faculty.model';
 import { IStudent } from '../student/student.interface';
 import { Student } from '../student/student.model';
 import { IUser } from './user.interface';
 import { User } from './user.model';
-import { generateStudentId } from './user.utils';
+import { generateFacultyId, generateStudentId } from './user.utils';
 
 const createStudentInDB = async (
   student: IStudent,
@@ -78,6 +80,66 @@ const createStudentInDB = async (
   }
 };
 
+const createFacultyInDB = async (
+  faculty: IFaculty,
+  user: IUser
+): Promise<IUser | null> => {
+  // default password
+  if (!user.password) {
+    user.password = config.default_student_pass as string;
+  }
+
+  // set role
+  user.role = ENUM_USER_ROLE.FACULTY;
+
+  // generate student user id
+  const id = await generateFacultyId();
+
+  user.id = id;
+  faculty.id = id;
+
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+
+    //array
+    const newFaculty = await Faculty.create([faculty], { session });
+
+    if (!newFaculty.length) {
+      throw new ApiError(400, 'Failed to create faculty');
+    }
+
+    //set faculty -->  _id into user.faculty
+    user.faculty = newFaculty[0]._id;
+
+    const newUser = await User.create([user], { session });
+
+    if (!newUser.length) {
+      throw new ApiError(400, 'Failed to create user');
+    }
+
+    await session.commitTransaction();
+    await session.endSession();
+
+    return newUser[0].populate({
+      path: 'faculty',
+      populate: [
+        {
+          path: 'academicDepartment',
+          populate: {
+            path: 'academicFaculty',
+          },
+        },
+      ],
+    });
+  } catch (error) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw error;
+  }
+};
+
 export const userService = {
   createStudentInDB,
+  createFacultyInDB,
 };

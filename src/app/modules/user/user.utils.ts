@@ -14,7 +14,7 @@ export const findLastStudentId = async (): Promise<string | undefined> => {
 // Function to generate a new student ID based on the academic semester
 export const generateStudentId = async (
   academicSemester: IAcademicSemester
-) => {
+): Promise<string> => {
   // Get the current ID by finding the last student ID or using '00000' if no previous student exists
   const currentId =
     (await findLastStudentId()) || (0).toString().padStart(5, '0');
@@ -25,5 +25,30 @@ export const generateStudentId = async (
   }${(parseInt(currentId) + 1).toString().padStart(5, '0')}`;
 
   // Return the generated student ID
+  return incrementedId;
+};
+
+// Function to find the ID of the last faculty in the database
+export const findLastFacultyId = async (): Promise<string | undefined> => {
+  const lastFaculty = await User.findOne({ role: 'faculty' }, { id: 1, _id: 0 }) // Find the last faculty with the role 'faculty'
+    .sort({ createdAt: -1 }) // Sort the results based on the 'createdAt' field in descending order
+    .lean(); // Convert the result to a plain JavaScript object
+
+  // Return the ID of the last faculty (if exists), or undefined if no faculty found
+  return lastFaculty?.id ? lastFaculty.id.substring(2) : undefined;
+};
+
+// Function to generate a new faculty ID.
+export const generateFacultyId = async (): Promise<string> => {
+  // Get the current ID by finding the last faculty ID or using '00000' if no previous faculty exists
+  const currentId =
+    (await findLastFacultyId()) || (0).toString().padStart(5, '0');
+
+  // Generate the incremented ID by combining F- and the current ID
+  const incrementedId = `F-${(parseInt(currentId) + 1)
+    .toString()
+    .padStart(5, '0')}`;
+
+  // Return the generated faculty ID
   return incrementedId;
 };
