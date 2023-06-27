@@ -12,9 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Testing
-app.get('/api/v1', async (req: Request, res: Response) => {
+app.get('/', async (req: Request, res: Response) => {
   // throw new Error('Testing error logger')
-  res.send('hey from Aitch university auth');
+  res.send('Hello from Aitch university auth');
 });
 
 // Application routes

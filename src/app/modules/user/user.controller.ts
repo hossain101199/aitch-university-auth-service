@@ -4,18 +4,18 @@ import sendResponse from '../../../shared/sendResponse';
 import { IUser } from './user.interface';
 import { userService } from './user.service';
 
-const createUser: RequestHandler = catchAsync(async (req, res) => {
-  const user = req.body;
-  const result = await userService.createUserInDB(user);
+const createStudent: RequestHandler = catchAsync(async (req, res) => {
+  const { student, ...userData } = req.body;
+  const result = await userService.createStudentInDB(student, userData);
 
   sendResponse<IUser>(res, {
     statusCode: 200,
     success: true,
-    message: 'User created successfully',
+    message: 'Student created successfully',
     data: result,
   });
 });
 
 export const userController = {
-  createUser,
+  createStudent,
 };
