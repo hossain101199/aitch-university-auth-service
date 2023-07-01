@@ -1,9 +1,13 @@
+import { ENUM_USER_ROLE } from '../../../enums/user';
 import { IAcademicSemester } from '../academicSemester/academicSemester.interface';
 import { User } from './user.model';
 
 // Function to find the ID of the last student in the database
 export const findLastStudentId = async (): Promise<string | undefined> => {
-  const lastStudent = await User.findOne({ role: 'student' }, { id: 1, _id: 0 }) // Find the last student with the role 'student'
+  const lastStudent = await User.findOne(
+    { role: ENUM_USER_ROLE.STUDENT },
+    { id: 1, _id: 0 }
+  ) // Find the last student with the role 'student'
     .sort({ createdAt: -1 }) // Sort the results based on the 'createdAt' field in descending order
     .lean(); // Convert the result to a plain JavaScript object
 
@@ -30,7 +34,10 @@ export const generateStudentId = async (
 
 // Function to find the ID of the last faculty in the database
 export const findLastFacultyId = async (): Promise<string | undefined> => {
-  const lastFaculty = await User.findOne({ role: 'faculty' }, { id: 1, _id: 0 }) // Find the last faculty with the role 'faculty'
+  const lastFaculty = await User.findOne(
+    { role: ENUM_USER_ROLE.FACULTY },
+    { id: 1, _id: 0 }
+  ) // Find the last faculty with the role 'faculty'
     .sort({ createdAt: -1 }) // Sort the results based on the 'createdAt' field in descending order
     .lean(); // Convert the result to a plain JavaScript object
 
@@ -55,7 +62,10 @@ export const generateFacultyId = async (): Promise<string> => {
 
 // Function to find the ID of the last admin in the database
 export const findLastAdminId = async (): Promise<string | undefined> => {
-  const lastAdmin = await User.findOne({ role: 'admin' }, { id: 1, _id: 0 }) // Find the last admin with the role 'admin'
+  const lastAdmin = await User.findOne(
+    { role: ENUM_USER_ROLE.ADMIN },
+    { id: 1, _id: 0 }
+  ) // Find the last admin with the role 'admin'
     .sort({ createdAt: -1 }) // Sort the results based on the 'createdAt' field in descending order
     .lean(); // Convert the result to a plain JavaScript object
 
