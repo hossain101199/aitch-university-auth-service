@@ -4,6 +4,7 @@ import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
 import { User } from '../user/user.model';
 import {
+  IChangePassword,
   ILoginUser,
   ILoginUserResponse,
   IRefreshTokenResponse,
@@ -91,7 +92,35 @@ const refreshToken = async (
   };
 };
 
+const changePassword = async (
+  user: JwtPayload | null,
+  payload: IChangePassword
+): Promise<void> => {
+  const { oldPassword, newPassword } = payload;
+
+  const isUserExist = await User.findOne({ id: user?.id }).select('+password');
+
+  if (!isUserExist) {
+    throw new ApiError(404, 'User does not exist');
+  }
+
+  // checking old password
+  if (
+    isUserExist.password &&
+    !(await bcrypt.compare(oldPassword, isUserExist.password))
+  ) {
+    throw new ApiError(401, 'Old Password is incorrect');
+  }
+
+  isUserExist.password = newPassword;
+  isUserExist.needsPasswordChange = false;
+
+  // updating using save()
+  isUserExist.save();
+};
+
 export const authService = {
   loginUser,
   refreshToken,
+  changePassword,
 };

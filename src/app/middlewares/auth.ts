@@ -19,7 +19,7 @@ const auth =
           requiredRoles.length &&
           requiredRoles.includes(verifiedToken.role)
         ) {
-          console.log(verifiedToken.role);
+          req.verifiedUser = verifiedToken;
           next();
         } else {
           throw new ApiError(403, 'Forbidden');

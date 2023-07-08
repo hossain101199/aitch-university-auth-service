@@ -32,13 +32,6 @@ const refreshToken: RequestHandler = catchAsync(async (req, res) => {
 
   const result = await authService.refreshToken(refreshToken);
 
-  // set refresh token into cookie
-  // const cookieOptions = {
-  //   secure: config.env === 'production',
-  //   httpOnly: true,
-  // };
-  // res.cookie('refreshToken', refreshToken, cookieOptions);
-
   sendResponse<IRefreshTokenResponse>(res, {
     statusCode: 200,
     success: true,
@@ -47,7 +40,22 @@ const refreshToken: RequestHandler = catchAsync(async (req, res) => {
   });
 });
 
+const changePassword: RequestHandler = catchAsync(async (req, res) => {
+  const user = req.verifiedUser;
+  const passwordData = req.body;
+  console.log(user);
+
+  await authService.changePassword(user, passwordData);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Password changed successfully !',
+  });
+});
+
 export const authController = {
   loginUser,
   refreshToken,
+  changePassword,
 };
